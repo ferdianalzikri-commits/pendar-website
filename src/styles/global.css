@@ -130,8 +130,17 @@ html {
   -moz-tab-size: 4;
   tab-size: 4;
   overflow-x: clip;
-  scrollbar-color: var(--color-med-blue) transparent;
-  scrollbar-width: thin;
+  overflow-y: overlay;
+  /* Legacy overlay scrollbar support */
+  scrollbar-gutter: auto;
+  font-size: 16px;
+}
+
+/* Fluid scale for smaller desktop screens to preserve layout ratio */
+@media (max-width: 1440px) and (min-width: 1024px) {
+  html {
+    font-size: 1.1111vw;
+  }
 }
 
 body {
@@ -151,7 +160,6 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
@@ -159,13 +167,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-med-blue);
-  border-radius: var(--radius-full, 9999px);
+  background-color: var(--color-med-blue);
+  border-radius: var(--radius-full);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-blue);
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-orange);
 }
+
 
 /* Typography Base Styling */
 h1,
@@ -287,6 +297,7 @@ button {
   .headline-mask {
     display: block;
   }
+
   .headline-line {
     display: block;
   }
@@ -403,7 +414,8 @@ button {
   margin-inline: 0;
   padding-top: 0;
   padding-bottom: 0;
-  overflow: clip; /* clip instead of hidden to allow position:sticky in descendants */
+  overflow: clip;
+  /* clip instead of hidden to allow position:sticky in descendants */
   color: var(--color-white);
   margin-top: 0;
   margin-bottom: 0;
@@ -429,8 +441,8 @@ button {
   color: var(--color-white) !important;
 }
 
-.dark-sections-wrapper p,
-.dark-sections-wrapper span:not(.label-pill):not(.expertise-badge):not(.stat-value):not(.word):not(.how-we-work__timeline-number):not(.process-card__tag):not(.product-card__mod-pill):not(.product-card__device-pill),
+.dark-sections-wrapper p:not(.process-card__desc),
+.dark-sections-wrapper span:not(.label-pill):not(.expertise-badge):not(.stat-value):not(.word):not(.how-we-work__timeline-number):not(.process-card__tag):not(.product-card__mod-pill):not(.product-card__device-pill):not(.headline-mask):not(.headline-line),
 .dark-sections-wrapper li {
   color: var(--color-shade-blue) !important;
 }
@@ -476,4 +488,43 @@ button {
   box-shadow:
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.15),
     inset 0 -1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/**
+ * ==========================================================================
+ * COMPONENT: WhatsApp FAB
+ * --------------------------------------------------------------------------
+ * Floating action button for mobile
+ * ==========================================================================
+ */
+.whatsapp-fab {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(94, 193, 105, 0.4);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+}
+
+.whatsapp-fab:hover {
+  background-color: #4da657; /* slightly darker green */
+  transform: scale(1.05);
+}
+
+.whatsapp-fab:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 1024px) {
+  .whatsapp-fab {
+    display: flex;
+  }
 }

@@ -47,13 +47,21 @@ const processSteps = [
 ---
 
 <section class="how-we-work section-padding" id="process">
+  <!-- Decorative Background Oval Shape -->
+  <div class="how-we-work__bg-shape"></div>
+
   <div class="container how-we-work__container">
     <div class="how-we-work__inner">
       <!-- Column A (40%) -->
       <div class="how-we-work__col-a">
         <span class="label-pill">How We Work</span>
         <h2 class="how-we-work__headline">
-          <span class="headline-mask"><span class="headline-line">From Discovery to Long-Term Support</span></span>
+          <span class="headline-mask"
+            ><span class="headline-line">From Discovery to</span></span
+          >
+          <span class="headline-mask"
+            ><span class="headline-line">Long-Term Support</span></span
+          >
         </h2>
         <p class="how-we-work__description">
           Pendar operates with an integrated technology ecosystem that enables
@@ -71,7 +79,10 @@ const processSteps = [
             {
               processSteps.map((step, index) => {
                 return (
-                  <div class="process-card liquid-glass" style={`--card-index: ${index + 1};`}>
+                  <div
+                    class="process-card liquid-glass"
+                    style={`--card-index: ${index + 1};`}
+                  >
                     <div class="process-card__icon-container">
                       <svg
                         class="process-card__icon"
@@ -90,9 +101,11 @@ const processSteps = [
                     </div>
                     <div class="process-card__body">
                       <h3 class="process-card__title">
-                        <span class="process-card__tag">
-                          &lt;{step.tag}&gt;&nbsp;
-                        </span>
+                        {step.tag && (
+                          <span class="process-card__tag">
+                            &lt;{step.tag}&gt;&nbsp;
+                          </span>
+                        )}
                         {step.title}
                       </h3>
                       <p class="process-card__desc">{step.description}</p>
@@ -148,7 +161,28 @@ const processSteps = [
     padding-top: var(--space-24) !important;
     padding-bottom: var(--space-48) !important;
     position: relative;
-    overflow: visible;
+    overflow: visible; /* But parent wrapper clips it */
+  }
+
+  .how-we-work__bg-shape {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 30%;
+    height: 15%;
+    background-color: var(--color-med-blue);
+    opacity: 0.8;
+    border-top-left-radius: 100%;
+    border-bottom-left-radius: 100%;
+    filter: blur(48px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .how-we-work__container {
+    position: relative;
+    z-index: 1;
   }
 
   .how-we-work__inner {
@@ -183,6 +217,7 @@ const processSteps = [
     line-height: 1.15;
     margin: 0;
     margin-bottom: var(--space-10);
+    text-align: center;
   }
 
   section.how-we-work p.how-we-work__description {
@@ -235,7 +270,7 @@ const processSteps = [
     animation-duration: 18s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    animation-delay: calc((1 - var(--card-index)) * 3s);
+    animation-delay: calc((var(--card-index) * 3s) - 21s);
   }
 
   @keyframes carousel-animate-vertical {
@@ -257,7 +292,8 @@ const processSteps = [
       border-color: var(--color-orange);
       animation-timing-function: ease-in-out;
     }
-    16.666% { /* Prev: exits to BOTTOM */
+    16.666% {
+      /* Prev: exits to BOTTOM */
       transform: translate(-50%, calc(-50% + 100% + var(--space-16))) scale(0.8);
       opacity: 1;
       visibility: visible;
@@ -275,7 +311,8 @@ const processSteps = [
       border-color: rgba(255, 255, 255, 0.08);
       animation-timing-function: ease-in-out;
     }
-    33.333% { /* Hidden Bottom */
+    33.333% {
+      /* Hidden Bottom */
       transform: translate(-50%, calc(-50% + 100% + var(--space-16))) scale(0.8);
       opacity: 0;
       visibility: hidden;
@@ -284,16 +321,39 @@ const processSteps = [
       border-color: rgba(255, 255, 255, 0.08);
       animation-timing-function: linear;
     }
-    83.333% { /* Snap to Hidden Top */
-      transform: translate(-50%, calc(-50% - 100% - var(--space-16))) scale(0.8);
+    83.332% {
+      /* Hold hidden state */
+      transform: translate(-50%, calc(-50% + 100% + var(--space-16))) scale(0.8);
       opacity: 0;
+      visibility: hidden;
+      z-index: 0;
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.08);
+      animation-timing-function: step-end;
+    }
+    83.333% {
+      /* Snap to Top, start scale 0 */
+      transform: translate(-50%, calc(-50% - 100% - var(--space-16))) scale(0);
+      opacity: 1; /* Instant opacity, no fade in */
+      visibility: visible;
+      z-index: 1;
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.08);
+      animation-timing-function: ease-out;
+    }
+    86.111% {
+      /* Balloon overshoot */
+      transform: translate(-50%, calc(-50% - 100% - var(--space-16)))
+        scale(0.85);
+      opacity: 1;
       visibility: visible;
       z-index: 1;
       background-color: transparent;
       border-color: rgba(255, 255, 255, 0.08);
       animation-timing-function: ease-in-out;
     }
-    88.888% { /* Fade in at TOP */
+    88.888% {
+      /* Settle at Top */
       transform: translate(-50%, calc(-50% - 100% - var(--space-16))) scale(0.8);
       opacity: 1;
       visibility: visible;
@@ -302,7 +362,8 @@ const processSteps = [
       border-color: rgba(255, 255, 255, 0.08);
       animation-timing-function: linear;
     }
-    94.444% { /* Next: begins entering from TOP */
+    94.444% {
+      /* Next: begins entering from TOP */
       transform: translate(-50%, calc(-50% - 100% - var(--space-16))) scale(0.8);
       opacity: 1;
       visibility: visible;
@@ -326,7 +387,7 @@ const processSteps = [
     animation-duration: 18s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-    animation-delay: calc((1 - var(--card-index)) * 3s);
+    animation-delay: calc((var(--card-index) * 3s) - 21s);
   }
 
   @keyframes tag-color-animate {
@@ -348,6 +409,28 @@ const processSteps = [
     }
     100% {
       color: var(--color-blue);
+    }
+  }
+
+  @keyframes desc-color-animate {
+    0% {
+      color: var(--color-white);
+      animation-timing-function: linear;
+    }
+    11.111% {
+      color: var(--color-white);
+      animation-timing-function: ease-in-out;
+    }
+    16.666% {
+      color: var(--color-light-blue);
+      animation-timing-function: linear;
+    }
+    94.444% {
+      color: var(--color-light-blue);
+      animation-timing-function: ease-in-out;
+    }
+    100% {
+      color: var(--color-white);
     }
   }
 
@@ -399,9 +482,14 @@ const processSteps = [
   section.how-we-work p.process-card__desc {
     font-size: var(--text-xs);
     font-weight: 400;
-    color: var(--color-white) !important;
+    color: var(--color-light-blue);
     margin: 0;
     line-height: 1.6;
+    animation-name: desc-color-animate;
+    animation-duration: 18s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: calc((var(--card-index) * 3s) - 21s);
   }
 
   /* Timeline widget hidden on mobile/tablet */
@@ -450,6 +538,7 @@ const processSteps = [
 
     .how-we-work__headline {
       font-size: var(--text-2xl);
+      text-align: left;
     }
 
     section.how-we-work p.how-we-work__description {
@@ -516,39 +605,50 @@ const processSteps = [
     }
 
     section.how-we-work .how-we-work__timeline-number {
-    position: absolute;
-    left: calc(45px + var(--space-6));
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--color-orange) !important;
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    line-height: 1;
-  }
+      position: absolute;
+      left: calc(45px + var(--space-6));
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-orange) !important;
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      line-height: 1;
+    }
 
-  .how-we-work__timeline-number::before {
-    content: "01";
-    animation-name: number-animate;
-    animation-duration: 18s;
-    animation-iteration-count: infinite;
-    /* Synchronized with forward card carousel timing */
-  }
+    .how-we-work__timeline-number::before {
+      content: "01";
+      animation-name: number-animate;
+      animation-duration: 18s;
+      animation-iteration-count: infinite;
+      /* Synchronized with forward card carousel timing */
+    }
 
-  @keyframes number-animate {
-    0%, 16.665% { content: "01"; }
-    16.666%, 33.332% { content: "02"; }
-    33.333%, 49.999% { content: "03"; }
-    50%, 66.665% { content: "04"; }
-    66.666%, 83.332% { content: "05"; }
-    83.333%, 100% { content: "06"; }
-  }
-
-  /* Pause animations on hover */
-  .how-we-work__steps:hover .process-card,
-  .how-we-work__steps:hover .how-we-work__timeline-number::before,
-  .how-we-work__steps:hover .process-card__tag {
-    animation-play-state: paused;
-  }
+    @keyframes number-animate {
+      0%,
+      16.665% {
+        content: "01";
+      }
+      16.666%,
+      33.332% {
+        content: "02";
+      }
+      33.333%,
+      49.999% {
+        content: "03";
+      }
+      50%,
+      66.665% {
+        content: "04";
+      }
+      66.666%,
+      83.332% {
+        content: "05";
+      }
+      83.333%,
+      100% {
+        content: "06";
+      }
+    }
 
     .process-card {
       min-height: 140px; /* Ensure consistent height for precise flex timeline alignment */
@@ -566,7 +666,9 @@ const processSteps = [
     const section = document.querySelector(".how-we-work");
     if (!section) return;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (prefersReducedMotion) return;
 
     gsap.set(".how-we-work__headline .headline-line", { clearProps: "all" });
@@ -581,7 +683,7 @@ const processSteps = [
       duration: 1.0,
       stagger: 0.15,
       ease: "power3.out",
-      clearProps: "all"
+      clearProps: "all",
     });
   }
 

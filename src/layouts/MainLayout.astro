@@ -38,7 +38,7 @@ const {
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" fetchpriority="high" />
 
     <meta name="generator" content={Astro.generator} />
   </head>
@@ -50,5 +50,23 @@ const {
     </main>
 
     <Footer />
+
+    <!-- Floating WhatsApp Button (Mobile Only) -->
+    <a href="https://wa.me/6282110962949?text=Hello%20Pendar%20Team%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20solutions%20and%20discussing%20our%20organization%27s%20requirements.%20Could%20we%20schedule%20a%20brief%20discussion%3F" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+      <svg
+        class="whatsapp-fab-icon"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
   </body>
 </html>

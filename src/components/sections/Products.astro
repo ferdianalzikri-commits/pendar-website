@@ -2,6 +2,11 @@
 import imgProcura from "../../images/image-procura.png";
 import imgCatalogue from "../../images/image-catalogue.png";
 import imgMarketplace from "../../images/image-marketplace.png";
+import imgCabinBag from "../../images/image-cabin-bag.png";
+import imgPms from "../../images/image-pms.png";
+import imgTravel from "../../images/image-travel.png";
+import imgLenient from "../../images/image-lenient.png";
+import imgCustom from "../../images/image-custom.png";
 
 const products = [
   {
@@ -38,7 +43,7 @@ const products = [
     id: "electronic-cabin-bag",
     name: "Electronic Cabin Bag",
     description: "An electronic cabin system that helps crew manage passenger seating, meals, and in-flight inventory seamlessly.",
-    image: imgProcura,
+    image: imgCabinBag,
     modules: ["Pax Manifest", "Seat Option", "Stock Take", "Inflight Sales", "Passenger List"],
     devices: ["Desktop App"],
     linkText: "",
@@ -48,7 +53,7 @@ const products = [
     id: "port-management-system",
     name: "Port Management System",
     description: "A port management system that streamlines cruise operations, coordinating berths, passengers, and vessel services efficiently.",
-    image: imgCatalogue,
+    image: imgPms,
     modules: ["Vessel Booking", "Passenger Check-In", "Baggage Check-In", "Voyage Report", "Port Dashboard"],
     devices: ["Web"],
     linkText: "",
@@ -58,7 +63,7 @@ const products = [
     id: "traveling-platform",
     name: "Traveling Platform",
     description: "Ship and flight booking platforms helping users access schedules, compare fares, and manage travel services on the go.",
-    image: imgMarketplace,
+    image: imgTravel,
     modules: ["Transport Booking", "Seat Selection", "Tour Packages", "Baggage Management", "Payment Methods"],
     devices: ["Web", "Mobile"],
     linkText: "",
@@ -68,7 +73,7 @@ const products = [
     id: "lenient-hr-system",
     name: "Lenient HR System",
     description: "A human resource system that enhances workforce management through automated workflows and unified employee data.",
-    image: imgProcura,
+    image: imgLenient,
     modules: ["Attendance", "Payroll", "Compliance", "Performance", "Talent Management", "Training"],
     devices: ["Web", "Mobile"],
     linkText: "",
@@ -78,7 +83,7 @@ const products = [
     id: "custom-systems",
     name: "Custom System & Workflow",
     description: "Solutions designed around your organization's unique workflows, operational requirements, and integration needs.",
-    image: imgCatalogue,
+    image: imgCustom,
     modules: ["Workflow Analysis", "System Integration", "Custom Development", "Automation", "API Integration", "Scalability"],
     devices: ["Web", "Desktop", "Mobile"],
     linkText: "Contact Us",
@@ -130,7 +135,7 @@ const slides = [
                 <div class="product-card-glow"></div>
                 <div class="product-card" id={product.id}>
                   <!-- Image height 224px, 60% (134px) extends outside, 40% (90px) inside -->
-                  <img src={product.image.src} alt={product.name} class="product-card__image" />
+                  <img src={product.image.src} alt={product.name} class="product-card__image" width={product.image.width} height={product.image.height} loading="lazy" decoding="async" />
                   
                   <!-- Card title (text-lg, 700, blue, left-aligned) -->
                   <h3 class="product-card__title">{product.name}</h3>

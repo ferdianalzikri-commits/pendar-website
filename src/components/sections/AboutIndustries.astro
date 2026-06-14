@@ -78,6 +78,10 @@ const categories = [
               src={category.image.src}
               alt={category.title}
               class="about-industries__category-icon"
+              width={category.image.width}
+              height={category.image.height}
+              loading="lazy"
+              decoding="async"
             />
             <h3 class="about-industries__category-title">{category.title}</h3>
             <p class="about-industries__category-desc">
@@ -274,7 +278,7 @@ const categories = [
   .about-industries__category-desc {
     font-size: var(--text-base); /* text-base */
     font-weight: 500; /* 500 */
-    color: var(--color-shade-blue) !important; /* color-shade-blue */
+    color: var(--color-light-blue) !important; /* color-shade-blue */
     margin: 0;
     line-height: 1.5;
   }
@@ -418,10 +422,7 @@ const categories = [
       ScrollTrigger.create({
         trigger: ".about-industries__inner",
         start: "top 240px",
-        end: () => {
-          const titleH = titleEl.offsetHeight || 0;
-          return `bottom ${240 + titleH}px`;
-        },
+        end: "bottom 40%", // Extended end point to reduce the perceived highlight scroll speed
         invalidateOnRefresh: true,
         id: "about-industries-words",
         onUpdate: (self: any) => {

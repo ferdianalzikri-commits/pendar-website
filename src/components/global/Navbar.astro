@@ -7,7 +7,7 @@ import pendarLogo from "../../images/Pendar-short.svg";
   <div class="container navbar-container">
     <!-- Column 1: Left Logo -->
     <a href="#hero" class="brand-logo" aria-label="pendar Home">
-      <img src={pendarLogo.src} alt="pendar" class="brand-logo-img" />
+      <img src={pendarLogo.src} alt="pendar" class="brand-logo-img" width={pendarLogo.width} height={pendarLogo.height} loading="eager" decoding="sync" />
     </a>
 
     <!-- Hamburger checkbox & toggle (hidden on desktop) -->
@@ -36,13 +36,13 @@ import pendarLogo from "../../images/Pendar-short.svg";
       </ul>
       <!-- Mobile-only CTA inside dropdown drawer -->
       <div class="nav-actions-mobile">
-        <Button href="#contact" variant="primary" class="nav-cta-btn">Contact</Button>
+        <Button href="mailto:info@procura.id" variant="primary" class="nav-cta-btn">Contact</Button>
       </div>
     </nav>
 
     <!-- Column 3: Right Desktop CTA Button -->
     <div class="nav-actions-desktop">
-      <Button href="#contact" variant="primary">Contact</Button>
+      <Button href="mailto:info@procura.id" variant="primary">Contact</Button>
     </div>
   </div>
 </header>
