@@ -1,0 +1,23 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustedBy from '../components/sections/TrustedBy.astro';
+import AboutIndustries from '../components/sections/AboutIndustries.astro';
+import CoreValues from '../components/sections/CoreValues.astro';
+import Products from '../components/sections/Products.astro';
+import HowWeWork from '../components/sections/HowWeWork.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
+---
+
+<!-- Refresh trigger: scrollbar updates -->
+<MainLayout>
+  <Hero />
+  <TrustedBy />
+  <div class="dark-sections-wrapper">
+    <AboutIndustries />
+    <CoreValues />
+    <Products />
+    <HowWeWork />
+  </div>
+  <ContactCTA />
+</MainLayout>

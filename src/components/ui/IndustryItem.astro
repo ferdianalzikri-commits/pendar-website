@@ -1,0 +1,80 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  iconSymbol: string;
+  highlightColor: string;
+}
+
+const { name, description, iconSymbol, highlightColor } = Astro.props;
+---
+
+<div class="industry-item" style={`--industry-accent: ${highlightColor}`}>
+  <div class="industry-icon" aria-hidden="true">
+    <span>{iconSymbol}</span>
+  </div>
+  <div class="industry-content">
+    <h3 class="industry-name">{name}</h3>
+    <p class="industry-description">{description}</p>
+  </div>
+</div>
+
+<style>
+  .industry-item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    transition: var(--transition-all);
+  }
+
+  .industry-item:hover {
+    border-color: var(--industry-accent);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .industry-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-lg);
+    transition: var(--transition-all);
+  }
+
+  .industry-item:hover .industry-icon {
+    background-color: var(--industry-accent);
+    border-color: var(--industry-accent);
+    color: var(--color-bg);
+  }
+
+  .industry-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .industry-name {
+    font-size: var(--text-md);
+    color: var(--color-text);
+    transition: var(--transition-all);
+  }
+
+  .industry-item:hover .industry-name {
+    color: var(--color-text);
+  }
+
+  .industry-description {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+</style>

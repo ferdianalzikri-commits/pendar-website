@@ -1,0 +1,704 @@
+---
+import valueImg from "../../images/value-image.png";
+---
+
+<section class="core-values" id="values">
+  <div class="container core-values__container">
+    <!-- Large depth background text -->
+    <div class="orbit-bg-text">
+      <span class="orbit-bg-word">Core</span>
+      <span class="orbit-bg-word">Value</span>
+    </div>
+
+    <!-- Orbit wrapper containing rings, center logo, dots, and card layouts -->
+    <div class="core-values__orbit-wrapper">
+      <!-- SVG Orbit Rings (Desktop Only) -->
+      <svg
+        class="orbit-svg"
+        viewBox="0 0 1100 1100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="ring-grad-1-2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(188, 196, 250, 0.1)"></stop>
+            <stop offset="50%" stop-color="rgba(242, 99, 13, 1)"></stop>
+            <stop offset="100%" stop-color="rgba(242, 99, 13, 0.5)"></stop>
+          </linearGradient>
+          <linearGradient id="ring-grad-3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(18, 40, 130, 0)"></stop>
+            <stop offset="50%" stop-color="rgba(242, 99, 13, 0.5)"></stop>
+            <stop offset="100%" stop-color="rgba(242, 99, 13, 0.15)"></stop>
+          </linearGradient>
+        </defs>
+
+        <!-- Ring 3 (Outer) Radius = 407 -->
+        <circle
+          cx="550"
+          cy="550"
+          r="407"
+          stroke="url(#ring-grad-3)"
+          stroke-width="1.5"></circle>
+
+        <!-- Ring 2 (Middle) Radius = 340 -->
+        <circle
+          cx="550"
+          cy="550"
+          r="340"
+          stroke="url(#ring-grad-1-2)"
+          stroke-width="1.5"></circle>
+
+        <!-- Ring 1 (Inner) Radius = 272 -->
+        <circle
+          cx="550"
+          cy="550"
+          r="272"
+          stroke="url(#ring-grad-1-2)"
+          stroke-width="1.5"></circle>
+      </svg>
+
+      <!-- Center Logo & Glow Graphic -->
+      <div class="orbit-center">
+        <div class="orbit-center-glow"></div>
+        <img src={valueImg.src} alt="Pendar Core Logo" class="orbit-image" />
+      </div>
+
+      <!-- Ring 1 Dots (Clockwise) -->
+      <div class="orbit-dot-wrapper dot-r1-a">
+        <div class="orbit-dot"></div>
+      </div>
+      <div class="orbit-dot-wrapper dot-r1-b">
+        <div class="orbit-dot"></div>
+      </div>
+
+      <!-- Ring 3 Dots (Counter-Clockwise) -->
+      <div class="orbit-dot-wrapper dot-r3-a">
+        <div class="orbit-dot"></div>
+      </div>
+      <div class="orbit-dot-wrapper dot-r3-b">
+        <div class="orbit-dot"></div>
+      </div>
+
+      <!-- Core Value 1: Top-Left -->
+      <div class="value-orbit-card-wrapper card-1">
+        <div class="value-orbit-card__pin"></div>
+        <div class="value-orbit-card liquid-glass">
+          <div class="value-orbit-card__body">
+            <h3 class="value-orbit-card__title">
+              Tailored Enterprise Solutions
+            </h3>
+            <p class="value-orbit-card__desc">
+              Every solution is designed and developed based on organizational
+              workflows, operational requirements, and business objectives.
+            </p>
+          </div>
+          <div class="value-orbit-card__placeholder"></div>
+        </div>
+      </div>
+
+      <!-- Core Value 2: Top-Right -->
+      <div class="value-orbit-card-wrapper card-2">
+        <div class="value-orbit-card__pin"></div>
+        <div class="value-orbit-card liquid-glass">
+          <div class="value-orbit-card__body">
+            <h3 class="value-orbit-card__title">Business-Driven Development</h3>
+            <p class="value-orbit-card__desc">
+              We analyze operational workflows and business requirements before
+              defining technology solutions.
+            </p>
+          </div>
+          <div class="value-orbit-card__placeholder"></div>
+        </div>
+      </div>
+
+      <!-- Core Value 3: Bottom-Left -->
+      <div class="value-orbit-card-wrapper card-3">
+        <div class="value-orbit-card__pin"></div>
+        <div class="value-orbit-card liquid-glass">
+          <div class="value-orbit-card__body">
+            <h3 class="value-orbit-card__title">Long-Term Scalability</h3>
+            <p class="value-orbit-card__desc">
+              Solutions are designed to support operational continuity, future
+              scalability, and long-term business growth.
+            </p>
+          </div>
+          <div class="value-orbit-card__placeholder"></div>
+        </div>
+      </div>
+
+      <!-- Core Value 4: Bottom-Right -->
+      <div class="value-orbit-card-wrapper card-4">
+        <div class="value-orbit-card__pin"></div>
+        <div class="value-orbit-card liquid-glass">
+          <div class="value-orbit-card__body">
+            <h3 class="value-orbit-card__title">Security by Design</h3>
+            <p class="value-orbit-card__desc">
+              We implement secure development and deployment practices to
+              protect operational data and system reliability.
+            </p>
+          </div>
+          <div class="value-orbit-card__placeholder"></div>
+        </div>
+      </div>
+
+      <!-- Core Value 5: Bottom-Center -->
+      <div class="value-orbit-card-wrapper card-5">
+        <div class="value-orbit-card__pin"></div>
+        <div class="value-orbit-card liquid-glass">
+          <div class="value-orbit-card__body">
+            <h3 class="value-orbit-card__title">Transparent Collaboration</h3>
+            <p class="value-orbit-card__desc">
+              Clear communication, accountable delivery, and structured project
+              governance throughout development.
+            </p>
+          </div>
+          <div class="value-orbit-card__placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Mobile / Tablet First Layout */
+  .core-values {
+    margin-top: var(--space-40); /* Space-40 below section about */
+    padding-bottom: var(--space-16);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .core-values__container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Big background title text */
+  .orbit-bg-text {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(18, 40, 130, 0) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  .orbit-bg-word {
+    display: block;
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    font-weight: 700;
+    line-height: 0.85;
+    letter-spacing: 0.05em;
+  }
+
+  /* Orbit layout hidden by default on mobile/tablet */
+  .orbit-svg,
+  .orbit-center,
+  .orbit-dot-wrapper {
+    display: none;
+  }
+
+  /* Grid layout wrapper for mobile/tablet */
+  .core-values__orbit-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    position: relative;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .core-values__orbit-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+
+  /* Premium Glassmorphic Cards Styling */
+  .value-orbit-card__pin {
+    display: none;
+  }
+
+  .value-orbit-card {
+    border-radius: 24px; /* Card corner rounded by 24px */
+    padding: 24px; /* Whole padding 24px too */
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--space-6); /* Space-6 gap between text column and placeholder */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .value-orbit-card:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-4px);
+  }
+
+  .value-orbit-card__placeholder {
+    width: 64px; /* Increased placeholder width to 64px */
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .value-orbit-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4); /* Spacing of space-4 between title and description */
+    flex: 1;
+  }
+
+  .value-orbit-card__title {
+    font-size: var(--text-base); /* Title use a text-base */
+    font-weight: 600; /* 600 */
+    color: var(--color-white); /* White */
+    margin: 0; /* Clear margin to allow container gap control */
+    line-height: 1.35;
+  }
+
+  .value-orbit-card__desc {
+    font-size: var(--text-xs); /* Description use text-xs */
+    font-weight: 400; /* 400 */
+    color: var(--color-light-blue) !important; /* White */
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 1100px) {
+    .core-values {
+      padding-top: 100px;
+      margin-top: 122px; /* Establishes exactly space-40 (160px) gap between categories grid and the top edge of headline/Ring 3 */
+    }
+
+    .orbit-bg-text {
+      position: absolute;
+      top: 20px; /* Shifted up so top-edge touches Ring 3 */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      margin-bottom: 0;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    .orbit-bg-word {
+      font-size: var(--text-4xl); /* text-4xl font size */
+      line-height: 0.85;
+      letter-spacing: 0.02em;
+    }
+
+    .core-values__orbit-wrapper {
+      display: block; /* Switch to absolute coordinates layout */
+      position: relative;
+      width: 1100px;
+      height: 920px; /* Shifted up by 230px, reduced height */
+      margin-inline: auto;
+    }
+
+    /* SVG Orbit Rings */
+    .orbit-svg {
+      display: block;
+      position: absolute;
+      top: 345px; /* Center at 345px (shifted up by 230px) */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1100px;
+      height: 1100px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Center Image container */
+    .orbit-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 345px; /* Center at 345px (shifted up by 230px) */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 943px;
+      height: 943px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .orbit-center-glow {
+      position: absolute;
+      width: 480px;
+      height: 180px;
+      background: var(--color-orange);
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.65;
+      transform: translate3d(0, 0, 0) rotate(-30deg); /* Diagonal tilt + GPU trigger */
+      will-change: transform;
+      pointer-events: none;
+      z-index: 1;
+      backface-visibility: hidden;
+    }
+
+    .orbit-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Orbit Dots (16x16px, light-blue) */
+    .orbit-dot-wrapper {
+      display: block;
+      position: absolute;
+      top: 345px; /* Center at 345px (shifted up by 230px) */
+      left: 50%;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .orbit-dot {
+      width: 16px;
+      height: 16px;
+      margin-top: -8px;
+      margin-left: -8px;
+      background-color: var(--color-light-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--color-light-blue);
+    }
+
+    @keyframes orbit-cw {
+      0% {
+        transform: translate(-50%, -50%) rotate(var(--start-angle))
+          translateY(calc(var(--radius) * -1));
+      }
+      100% {
+        transform: translate(-50%, -50%)
+          rotate(calc(var(--start-angle) + 360deg))
+          translateY(calc(var(--radius) * -1));
+      }
+    }
+
+    @keyframes orbit-ccw {
+      0% {
+        transform: translate(-50%, -50%) rotate(var(--start-angle))
+          translateY(calc(var(--radius) * -1));
+      }
+      100% {
+        transform: translate(-50%, -50%)
+          rotate(calc(var(--start-angle) - 360deg))
+          translateY(calc(var(--radius) * -1));
+      }
+    }
+
+    /* Ring 1 (Radius 272px) - 2 Dots Clockwise */
+    .dot-r1-a {
+      --radius: 272px;
+      --start-angle: 45deg;
+      animation: orbit-cw 35s linear infinite;
+    }
+    .dot-r1-b {
+      --radius: 272px;
+      --start-angle: 225deg;
+      animation: orbit-cw 35s linear infinite;
+    }
+
+    /* Ring 3 (Radius 407px) - 2 Dots Counter-Clockwise */
+    .dot-r3-a {
+      --radius: 407px;
+      --start-angle: 120deg;
+      animation: orbit-ccw 50s linear infinite;
+    }
+    .dot-r3-b {
+      --radius: 407px;
+      --start-angle: 300deg;
+      animation: orbit-ccw 50s linear infinite;
+    }
+
+    /* The orange ellipse pin (18px) centered at the top border of the card wrapper */
+    .value-orbit-card__pin {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background-color: var(--color-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(242, 99, 13, 0.8);
+      z-index: 12;
+    }
+
+    /* Absolute position for the 5 cards hanging on Ring 2 (radius 340px) */
+    .value-orbit-card-wrapper {
+      position: absolute;
+      width: 380px; /* 380px width */
+      z-index: 10;
+    }
+
+    .value-orbit-card {
+      margin-top: 21px; /* 12px visual gap from the 18px orange pin */
+    }
+
+    /* Card 1: Top-Left (Pin sits at R=340, angle=210deg) */
+    .card-1 {
+      left: calc(50% - 275px);
+      top: 145px; /* Shifted up by 230px */
+      transform: translateX(-50%);
+    }
+
+    /* Card 2: Top-Right (Pin sits at R=340, angle=330deg) */
+    .card-2 {
+      left: calc(50% + 275px);
+      top: 145px; /* Shifted up by 230px */
+      transform: translateX(-50%);
+    }
+
+    /* Card 3: Bottom-Left (Pin sits at R=340, angle=150deg) */
+    .card-3 {
+      left: calc(50% - 332.7px);
+      top: 415px; /* Shifted up by 230px */
+      transform: translateX(-50%);
+    }
+
+    /* Card 4: Bottom-Right (Pin sits at R=340, angle=30deg) */
+    .card-4 {
+      left: calc(50% + 332.7px);
+      top: 415px; /* Shifted up by 230px */
+      transform: translateX(-50%);
+    }
+
+    /* Card 5: Bottom-Center (Pin sits at R=340, angle=90deg) */
+    .card-5 {
+      left: 50%;
+      top: 685px; /* Shifted up by 230px */
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .value-orbit-card__body {
+      width: 280px;
+    }
+    .value-orbit-card-wrapper {
+      width: 416px;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initCoreValuesAnimation() {
+    const section = document.querySelector(".core-values");
+    if (!section) return;
+
+    // Check prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const mm = gsap.matchMedia();
+
+    // Desktop Animation
+    mm.add("(min-width: 1024px)", () => {
+      // Disable CSS transitions during animation to prevent stuttering
+      gsap.set(
+        ".core-values .orbit-bg-word, .core-values .orbit-svg circle, .core-values .orbit-center-glow, .core-values .orbit-image, .core-values .orbit-dot, .core-values .value-orbit-card, .core-values .value-orbit-card__pin",
+        { clearProps: "all", transition: "none" },
+      );
+
+      // Set up rings for drawing effect
+      const ringsArray = gsap.utils.toArray(
+        ".core-values .orbit-svg circle",
+      ) as SVGCircleElement[];
+      ringsArray.forEach((ring) => {
+        const length = ring.getTotalLength();
+        gsap.set(ring, { strokeDasharray: length, strokeDashoffset: length });
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 65%", // Trigger when section is 35% into view
+        },
+      });
+
+      // Use clearProps on complete to ensure 100% pixel-perfect CSS layout matching
+      tl.from(
+        ".core-values .orbit-bg-word",
+        {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          clearProps: "opacity,transform",
+        },
+        0,
+      )
+        .to(
+          ringsArray,
+          {
+            strokeDashoffset: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power2.inOut",
+            clearProps: "strokeDashoffset,strokeDasharray",
+          },
+          0.2,
+        )
+        .from(
+          ".core-values .orbit-center-glow",
+          {
+            opacity: 0,
+            scale: 0.6,
+            duration: 1,
+            ease: "back.out(1.5)",
+            clearProps: "opacity,transform",
+          },
+          0.4,
+        )
+        .from(
+          ".core-values .orbit-image",
+          {
+            opacity: 0,
+            scale: 0.6,
+            duration: 1,
+            ease: "back.out(1.5)",
+            clearProps: "opacity,transform",
+          },
+          0.4,
+        )
+        .from(
+          ".core-values .orbit-dot",
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "back.out(2)",
+            clearProps: "opacity,transform",
+          },
+          1.0,
+        )
+        .from(
+          ".core-values .value-orbit-card__pin",
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "back.out(2)",
+            clearProps: "opacity,transform",
+          },
+          1.0,
+        )
+        .from(
+          ".core-values .card-1 .value-orbit-card, .core-values .card-2 .value-orbit-card",
+          {
+            opacity: 0,
+            y: 30,
+            duration: 1.2,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          1.2,
+        )
+        .from(
+          ".core-values .card-3 .value-orbit-card, .core-values .card-4 .value-orbit-card",
+          {
+            opacity: 0,
+            y: 30,
+            duration: 1.2,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          1.4,
+        )
+        .from(
+          ".core-values .card-5 .value-orbit-card",
+          {
+            opacity: 0,
+            y: 30,
+            duration: 1.2,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          1.6,
+        );
+    });
+
+    // Mobile Animation
+    mm.add("(max-width: 1023px)", () => {
+      gsap.set(".core-values .orbit-bg-word, .core-values .value-orbit-card", {
+        clearProps: "all",
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+        },
+      });
+
+      tl.from(
+        ".core-values .orbit-bg-word",
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          clearProps: "opacity,transform",
+        },
+        0,
+      ).from(
+        ".core-values .value-orbit-card",
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          clearProps: "opacity,transform",
+        },
+        0.3,
+      );
+    });
+  }
+
+  // Lifecycle listeners for Astro view transitions
+  document.addEventListener("DOMContentLoaded", initCoreValuesAnimation);
+  document.addEventListener("astro:page-load", initCoreValuesAnimation);
+
+  // Fallback for direct loads/hot reloads
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initCoreValuesAnimation();
+  }
+</script>

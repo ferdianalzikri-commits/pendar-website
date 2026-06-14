@@ -1,0 +1,91 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'accent' | 'green-outline';
+  class?: string;
+  [key: string]: any;
+}
+
+const { 
+  href, 
+  variant = 'primary', 
+  class: className = '', 
+  ...attrs 
+} = Astro.props;
+
+const classes = `btn btn-${variant} ${className}`;
+---
+
+{href ? (
+  <a href={href} class={classes} {...attrs as HTMLAttributes<'a'>}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} {...attrs}>
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: var(--text-sm); /* text-sm size (16px) */
+    font-weight: var(--font-weight-semibold); /* semibold */
+    padding: 0 32px; /* px 32px, height handles py */
+    height: 48px; /* exactly 48px height in total as requested */
+    min-height: 48px;
+    border-radius: var(--radius-full); /* fully rounded */
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-all);
+    border: 2px solid transparent;
+    user-select: none;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  /* Orange primary button */
+  .btn-primary {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+  }
+
+  .btn-primary:hover {
+    background-color: #d65306;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(242, 99, 13, 0.15);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    background-color: transparent;
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-shade-blue);
+    transform: translateY(-1px);
+  }
+
+  /* Green Outline */
+  .btn-green-outline {
+    background-color: transparent;
+    border-color: var(--color-green);
+    color: var(--color-green);
+  }
+
+  .btn-green-outline:hover {
+    background-color: rgba(94, 193, 105, 0.05);
+    transform: translateY(-1px);
+  }
+</style>

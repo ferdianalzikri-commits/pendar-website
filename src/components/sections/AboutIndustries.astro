@@ -1,0 +1,561 @@
+---
+import { aboutData } from "../../data/about";
+import enterpriseImg from "../../images/Enterprise.png";
+import governanceImg from "../../images/Governance.png";
+import aviationImg from "../../images/Aviation.png";
+import portImg from "../../images/Port.png";
+
+const categories = [
+  {
+    title: "Large Enterprise",
+    description:
+      "Custom enterprise platforms designed around complex operational requirements.",
+    image: enterpriseImg,
+  },
+  {
+    title: "Government",
+    description:
+      "Operational systems that support transparency, accountability, and structured public sector workflows.",
+    image: governanceImg,
+  },
+  {
+    title: "Aviation & Transport",
+    description:
+      "Specialized operational platforms for aviation, transportation, and mobility operators.",
+    image: aviationImg,
+  },
+  {
+    title: "Logistics & Ports",
+    description:
+      "Integrated logistics and port management systems for complex operational coordination.",
+    image: portImg,
+  },
+];
+---
+
+<section class="about-industries" id="industries">
+  <div class="container">
+    <!-- Top content block -->
+    <div class="about-industries__inner">
+      <div class="about-industries__title">
+        <h2 class="about-industries__headline">
+          <span class="headline-mask"
+            ><span class="headline-line"
+              >Your Enterprise<br class="desktop-only" /></span
+            ></span
+          >
+          <span class="headline-mask"
+            ><span class="headline-line">Technology Partner.</span></span
+          >
+        </h2>
+      </div>
+      <div class="about-industries__content">
+        <p
+          class="about-industries__paragraph about-industries__paragraph--active"
+        >
+          Founded in 2021 <strong>PT Pendar Sinergi Utama</strong> is an enterprise
+          technology partner that helps organizations <span
+            class="about-industries__text-muted"
+            ><strong>digitize</strong> procurement, workforce, logistics, aviation,
+            and infrastructure operations through scalable digital solutions.</span
+          >
+        </p>
+        <p
+          class="about-industries__paragraph about-industries__paragraph--muted"
+        >
+          We combine technology and operational expertise to improve visibility,
+          efficiency, and collaboration across complex organizations.
+        </p>
+      </div>
+    </div>
+
+    <!-- Category columns (192px below) -->
+    <div class="about-industries__categories about-industries__industries">
+      {
+        categories.map((category) => (
+          <div class="about-industries__category industry-card">
+            <img
+              src={category.image.src}
+              alt={category.title}
+              class="about-industries__category-icon"
+            />
+            <h3 class="about-industries__category-title">{category.title}</h3>
+            <p class="about-industries__category-desc">
+              {category.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-industries {
+    padding-top: var(
+      --space-48
+    ); /* 192px from the start of the blue background wrapper */
+    padding-bottom: clamp(var(--space-16), 10vw, var(--space-32));
+    color: var(--color-white);
+  }
+
+  .about-industries__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__inner {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 110px;
+    }
+  }
+
+  .about-industries__title {
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__title {
+      position: sticky;
+      top: 240px; /* navbar ~80px + space-40 (160px) below navbar */
+      align-self: start;
+    }
+  }
+
+  .about-industries__headline {
+    font-size: var(--text-xl); /* text-xl on mobile */
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.15;
+    margin: 0;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__headline {
+      font-size: var(--text-2xl); /* standard text-2xl on desktop */
+      text-align: left;
+      margin-top: -14px; /* Lift up to align with top of description */
+    }
+  }
+
+  /* Desktop-only line break utility */
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .desktop-only {
+      display: inline;
+    }
+  }
+
+  .about-industries__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 100%;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__content {
+      gap: var(--space-20);
+      max-width: 720px; /* Paragraph max-width limit */
+      align-items: flex-start;
+    }
+  }
+
+  .about-industries__paragraph {
+    font-size: var(--text-lg); /* text-lg on mobile */
+    font-weight: 500;
+    color: var(--color-med-blue); /* start as med-blue */
+    line-height: 1.45;
+    margin: 0;
+    opacity: 1; /* full opacity, color-driven highlight */
+    transition: color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__paragraph {
+      font-size: var(--text-xl); /* text-xl on desktop */
+      text-align: left;
+    }
+  }
+
+  .about-industries__paragraph strong {
+    color: var(--color-light-blue); /* start as light-blue in base state */
+    font-weight: 600;
+    transition: color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Progressive Enhancement Fallbacks (active if no JS) */
+  .about-industries__paragraph--active {
+    color: var(--color-white);
+  }
+  .about-industries__paragraph--active strong {
+    color: var(--color-white);
+  }
+
+  .about-industries__paragraph--muted {
+    color: var(--color-med-blue);
+  }
+  .about-industries__paragraph--muted strong {
+    color: var(--color-light-blue);
+  }
+
+  .about-industries__text-muted {
+    color: var(--color-med-blue) !important;
+  }
+  .about-industries__text-muted strong {
+    color: var(--color-light-blue) !important;
+  }
+
+  /* 4 Industries Categories Layout */
+  .about-industries__categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    margin-top: var(--space-48); /* space-40 below top content */
+    align-items: stretch;
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__categories {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+  }
+
+  .about-industries__category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-inline: 32px; /* 32px gap between line and content */
+  }
+
+  @media (min-width: 1024px) {
+    .about-industries__category:not(:first-child) {
+      border-left: 1.5px solid rgba(255, 255, 255, 0.25); /* 1.5px stroke with white:25% opacity */
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .about-industries__category {
+      padding-inline: var(--space-4);
+      padding-block: var(--space-6);
+    }
+    .about-industries__category:not(:first-child) {
+      border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+      padding-top: var(--space-8);
+    }
+  }
+
+  .about-industries__category-icon {
+    height: 96px; /* 96px height */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: var(--space-8); /* space among image and text is space-4 */
+  }
+
+  .about-industries__category-title {
+    font-size: var(--text-md); /* text-md */
+    font-weight: 600; /* 600 */
+    color: var(--color-white); /* white */
+    margin: 0 0 var(--space-4) 0; /* space among image and text is space-4 */
+    line-height: 1.3;
+  }
+
+  .about-industries__category-desc {
+    font-size: var(--text-base); /* text-base */
+    font-weight: 500; /* 500 */
+    color: var(--color-shade-blue) !important; /* color-shade-blue */
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* JS-enabled animation states & fallbacks */
+
+  /* Neutralize ALL paragraph-level color overrides so .word spans control color */
+  .about-industries--js .about-industries__paragraph,
+  .about-industries--js .about-industries__paragraph--active,
+  .about-industries--js .about-industries__paragraph--muted {
+    color: inherit !important;
+    opacity: 1;
+    transition: none;
+  }
+
+  .about-industries--js .about-industries__paragraph strong,
+  .about-industries--js .about-industries__paragraph--active strong,
+  .about-industries--js .about-industries__paragraph--muted strong {
+    color: inherit !important;
+    transition: none;
+  }
+
+  .about-industries--js .about-industries__text-muted,
+  .about-industries--js .about-industries__text-muted strong {
+    color: inherit !important;
+    transition: none;
+  }
+
+  .about-industries--js .word {
+    display: inline;
+    color: var(--color-shade-blue);
+    opacity: 0.25;
+    transition: none;
+  }
+
+  .about-industries--js .industry-card {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .about-industries--js .about-industries__category-icon {
+    transform: scale(0.9) rotate(0deg);
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let mm: any;
+
+  // Helper function to wrap text characters in span tags while preserving inner elements
+  function wrapChars(element: any) {
+    const nodes = Array.from(element.childNodes);
+    nodes.forEach((node: any) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.nodeValue || "";
+        if (text.trim()) {
+          const chars = text.split("");
+          const fragment = document.createDocumentFragment();
+          chars.forEach((char: string) => {
+            if (char === " " || char === "\n" || char === "\t") {
+              fragment.appendChild(document.createTextNode(char));
+            } else {
+              const span = document.createElement("span");
+              span.className = "word"; // Keep class 'word' to bypass global.css overrides
+              span.textContent = char;
+              fragment.appendChild(span);
+            }
+          });
+          node.parentNode.replaceChild(fragment, node);
+        }
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        wrapChars(node);
+      }
+    });
+  }
+
+  function initAboutIndustriesAnimation() {
+    if (mm) {
+      mm.revert();
+    }
+
+    // Kill named ScrollTriggers if they exist from previous load
+    ScrollTrigger.getById("about-industries-cards")?.kill();
+    ScrollTrigger.getById("about-industries-words")?.kill();
+    ScrollTrigger.getById("about-industries-cards-mobile")?.kill();
+
+    const section = document.querySelector(".about-industries");
+    if (!section) return;
+
+    // Check prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) {
+      section.classList.remove("about-industries--js");
+      return;
+    }
+
+    // Add class for JS state styling
+    section.classList.add("about-industries--js");
+
+    const paragraphs = section.querySelectorAll(".about-industries__paragraph");
+    const cards = section.querySelectorAll(".industry-card");
+    const icons = section.querySelectorAll(".about-industries__category-icon");
+
+    if (paragraphs.length < 2) return;
+
+    // Wrap characters in paragraphs (only once if not already wrapped)
+    paragraphs.forEach((p) => {
+      if (!p.querySelector(".word")) {
+        wrapChars(p);
+      }
+    });
+
+    mm = gsap.matchMedia();
+
+    // Shared state flags
+    let cardsRevealed = false;
+    let iconsAnimated = false;
+
+    // Desktop: progressive letter-by-letter highlight tied to pinning scroll progress
+    mm.add("(min-width: 1024px)", () => {
+      const chars = section.querySelectorAll(
+        ".word",
+      ) as NodeListOf<HTMLElement>;
+      const titleEl = section.querySelector(
+        ".about-industries__title",
+      ) as HTMLElement;
+
+      // Set initial char states with !important to beat global cascade and add transition for fade effect
+      chars.forEach((char) => {
+        char.style.setProperty("color", "var(--color-shade-blue)", "important");
+        char.style.opacity = "0.25";
+        char.style.transition = "color 0.15s ease, opacity 0.15s ease";
+      });
+
+      ScrollTrigger.create({
+        trigger: ".about-industries__inner",
+        start: "top 240px",
+        end: () => {
+          const titleH = titleEl.offsetHeight || 0;
+          return `bottom ${240 + titleH}px`;
+        },
+        invalidateOnRefresh: true,
+        id: "about-industries-words",
+        onUpdate: (self: any) => {
+          // Progress perfectly maps to the pinning duration.
+          // Because of the height differences, the active highlight index inherently stays within the headline's bounding box.
+          const activeCount = Math.round(self.progress * chars.length);
+
+          chars.forEach((char, i) => {
+            if (i < activeCount) {
+              char.style.setProperty("color", "#FFFFFF", "important");
+              char.style.opacity = "1";
+            } else {
+              char.style.setProperty(
+                "color",
+                "var(--color-shade-blue)",
+                "important",
+              );
+              char.style.opacity = "0.25";
+            }
+          });
+
+          // Reveal cards exactly when headline stops pinning (progress >= 0.99)
+          if (self.progress >= 0.99 && !cardsRevealed) {
+            cardsRevealed = true;
+            iconsAnimated = true;
+            gsap.to(cards, {
+              opacity: 1,
+              y: 0,
+              stagger: 0.15,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+            gsap.to(icons, {
+              scale: 1,
+              rotation: 0,
+              stagger: 0.15,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          } else if (self.progress < 0.99 && cardsRevealed) {
+            cardsRevealed = false;
+            gsap.to(cards, {
+              opacity: 0,
+              y: 40,
+              duration: 0.3,
+              ease: "power2.in",
+              overwrite: "auto",
+            });
+          }
+        },
+      });
+    });
+
+    // Mobile: Show all characters immediately
+    mm.add("(max-width: 1023px)", () => {
+      gsap.set(paragraphs, { opacity: 1 });
+      const chars = section.querySelectorAll(
+        ".word",
+      ) as NodeListOf<HTMLElement>;
+      chars.forEach((char) => {
+        char.style.setProperty("color", "#FFFFFF", "important");
+        char.style.opacity = "1";
+      });
+
+      // Mobile: Stagger reveal cards when they scroll into view
+      ScrollTrigger.create({
+        trigger: ".about-industries__categories",
+        start: "top 85%",
+        id: "about-industries-cards-mobile",
+        onEnter: () => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 60%", // Trigger when section is 40% into view
+            },
+          });
+
+          tl.from(
+            ".about-industries__headline .headline-line",
+            {
+              y: "100%",
+              duration: 1,
+              stagger: 0.15,
+              ease: "power3.out",
+              clearProps: "all",
+            },
+            0,
+          ).from(
+            ".about-industries__description",
+            {
+              opacity: 0,
+              y: 30,
+              duration: 1,
+              ease: "power3.out",
+              clearProps: "all",
+            },
+            0.2,
+          );
+
+          if (!cardsRevealed) {
+            cardsRevealed = true;
+            gsap.to(cards, {
+              opacity: 1,
+              y: 0,
+              stagger: 0.15,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+            gsap.to(icons, {
+              scale: 1,
+              rotation: 0,
+              stagger: 0.15,
+              duration: 0.5,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          }
+        },
+      });
+    });
+  }
+
+  // Lifecycle listeners
+  document.addEventListener("DOMContentLoaded", initAboutIndustriesAnimation);
+  document.addEventListener("astro:page-load", initAboutIndustriesAnimation);
+
+  // Fallback for direct loads/hot reloads
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initAboutIndustriesAnimation();
+  }
+</script>

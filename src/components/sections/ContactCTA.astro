@@ -1,0 +1,283 @@
+---
+import pendarBlur from "../../images/pendar-blur.png";
+---
+
+<section class="contact-cta" id="contact">
+  <div class="container contact-cta__container">
+    <!-- Background Blur Image -->
+    <img src={pendarBlur.src} alt="" class="contact-cta__blur-img" />
+
+    <div class="contact-cta__inner">
+      <!-- Column A -->
+      <div class="contact-cta__col-a">
+        <h2 class="contact-cta__headline">
+          <span class="headline-mask"><span class="headline-line">Every Operation Has Its Challenges.</span></span>
+          <span class="headline-mask"><span class="headline-line">Let's Solve Them Together.</span></span>
+        </h2>
+        <p class="contact-cta__description">
+          Our team is ready to understand your workflows, identify operational
+          gaps, and explore the right digital solution for your organization.
+        </p>
+      </div>
+
+      <!-- Column B -->
+      <div class="contact-cta__col-b">
+        <span class="contact-cta__sub-title">Let's Start the Conversation</span>
+
+        <div class="contact-cta__actions">
+          <a href="#" class="btn-primary-custom contact-cta__btn-orange">
+            <svg
+              class="contact-cta__btn-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+            Discuss Your Requirements
+          </a>
+
+          <span class="contact-cta__or">Or</span>
+
+          <a href="#" class="contact-cta__btn-whatsapp">
+            <svg
+              class="contact-cta__btn-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+            Get a Quick Response
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    position: relative;
+    margin-top: var(
+      --space-24
+    ); /* 24px space below the dark background wrapper */
+    padding-bottom: var(--space-20);
+    z-index: 10;
+  }
+
+  .contact-cta__container {
+    background-color: var(--color-shade-blue) !important;
+    border-radius: 48px !important;
+    padding-block: 80px !important;
+    padding-inline: 64px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    max-width: calc(100% - 128px) !important; /* 64px margins each side */
+    margin-inline: auto !important;
+  }
+
+  .contact-cta__blur-img {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 400px !important;
+    width: auto !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    mix-blend-mode: multiply !important;
+    opacity: 0.8 !important;
+  }
+
+  .contact-cta__inner {
+    display: grid !important;
+    grid-template-columns: 1.15fr 0.85fr !important;
+    gap: var(--space-32) !important; /* space-32 gap */
+    align-items: center !important;
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+  }
+
+  /* Column A styling */
+  .contact-cta__col-a {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-10) !important;
+    max-width: 680px !important;
+    text-align: left !important;
+  }
+
+  .contact-cta__headline {
+    font-size: var(--text-2xl) !important;
+    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    color: var(--color-blue) !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+  }
+
+  .contact-cta__description {
+    font-size: var(--text-md) !important;
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+    color: var(--color-blue) !important;
+    opacity: 0.8 !important;
+    margin: 0 !important;
+  }
+
+  /* Column B styling */
+  .contact-cta__col-b {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .contact-cta__sub-title {
+    display: block !important;
+    font-size: var(--text-lg) !important;
+    font-weight: 500 !important;
+    color: var(--color-blue) !important;
+    margin-bottom: var(--space-8) !important; /* space-12 */
+  }
+
+  .contact-cta__actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    gap: 0 !important;
+  }
+
+  .contact-cta__btn-icon {
+    margin-right: var(--space-1) !important; /* gap space-4 */
+    flex-shrink: 0 !important;
+    display: inline-block !important;
+  }
+
+  .contact-cta__btn-orange {
+    width: 100% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .contact-cta__or {
+    font-size: var(--text-xs) !important;
+    font-weight: 400 !important;
+    color: var(--color-blue) !important;
+    margin-block: var(
+      --space-3
+    ) !important; /* space-3 (12px) before and after */
+    display: block !important;
+    line-height: 1 !important;
+  }
+
+  .contact-cta__btn-whatsapp {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 56px !important;
+    padding: 0 32px !important;
+    width: 100% !important;
+    background-color: var(--color-white) !important;
+    color: var(--color-green) !important;
+    border: 1.5px solid var(--color-green) !important;
+    font-size: var(--text-base) !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-full) !important;
+    transition: var(--transition-all) !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+
+  .contact-cta__btn-whatsapp:hover {
+    background-color: rgba(94, 193, 105, 0.35) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1024px) {
+    .contact-cta__container {
+      max-width: 100% !important;
+      margin-inline: 0 !important;
+    }
+
+    .contact-cta__inner {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-10) !important;
+      text-align: center !important;
+    }
+
+    .contact-cta__col-a {
+      align-items: center !important;
+      text-align: center !important;
+      max-width: 100% !important;
+    }
+
+    .contact-cta__col-b {
+      margin-top: var(--space-4) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-cta__container {
+      padding-block: 60px !important;
+      padding-inline: 24px !important;
+      border-radius: 32px !important;
+    }
+
+    .contact-cta__blur-img {
+      height: 250px !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initContactCTAAnimation() {
+    const section = document.querySelector(".contact-cta");
+    if (!section) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    gsap.set(".contact-cta__headline .headline-line", { clearProps: "all" });
+
+    gsap.from(".contact-cta__headline .headline-line", {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+      },
+      y: "100%",
+      opacity: 0,
+      duration: 1.0,
+      stagger: 0.15,
+      ease: "power3.out",
+      clearProps: "all"
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initContactCTAAnimation);
+  document.addEventListener("astro:page-load", initContactCTAAnimation);
+</script>

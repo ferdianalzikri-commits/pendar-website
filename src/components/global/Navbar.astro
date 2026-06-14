@@ -1,0 +1,448 @@
+---
+import Button from "./Button.astro";
+import pendarLogo from "../../images/Pendar-short.svg";
+---
+
+<header class="navbar-header">
+  <div class="container navbar-container">
+    <!-- Column 1: Left Logo -->
+    <a href="#hero" class="brand-logo" aria-label="pendar Home">
+      <img src={pendarLogo.src} alt="pendar" class="brand-logo-img" />
+    </a>
+
+    <!-- Hamburger checkbox & toggle (hidden on desktop) -->
+    <input
+      type="checkbox"
+      id="nav-menu-toggle"
+      class="nav-toggle-input"
+      aria-label="Toggle navigation menu"
+    />
+    
+    <label for="nav-menu-toggle" class="nav-toggle-button" aria-hidden="true">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </label>
+
+    <!-- Column 2: Center Menu links -->
+    <nav class="nav-menu" aria-label="Main navigation menu">
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#industries" class="nav-link">About Us</a></li>
+        <li><a href="#values" class="nav-link">Values</a></li>
+        <li><a href="#products" class="nav-link">Products</a></li>
+        <!-- Single floating sliding indicator line -->
+        <div class="nav-indicator" aria-hidden="true"></div>
+      </ul>
+      <!-- Mobile-only CTA inside dropdown drawer -->
+      <div class="nav-actions-mobile">
+        <Button href="#contact" variant="primary" class="nav-cta-btn">Contact</Button>
+      </div>
+    </nav>
+
+    <!-- Column 3: Right Desktop CTA Button -->
+    <div class="nav-actions-desktop">
+      <Button href="#contact" variant="primary">Contact</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initNavbarScroll() {
+    const header = document.querySelector(".navbar-header");
+    if (!header) return;
+
+    // Force scroll to top on page reload/load
+    if (history.scrollRestoration) {
+      history.scrollRestoration = "manual";
+    }
+
+    // Always reset scroll to top on reload and clear any active hash from url
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+
+    // Toggle glassmorphism background
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        header.classList.add("scrolled");
+        header.classList.add("liquid-glass");
+      } else {
+        header.classList.remove("scrolled");
+        header.classList.remove("liquid-glass");
+      }
+    };
+
+    // Toggle high-contrast color mode over dark sections
+    const handleContrast = () => {
+      const darkSections = document.querySelectorAll(".dark-sections-wrapper, .dark-section");
+      if (darkSections.length === 0) return;
+
+      const headerRect = header.getBoundingClientRect();
+      const headerMid = headerRect.top + headerRect.height / 2;
+
+      let isOverDark = false;
+      darkSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (headerMid >= rect.top && headerMid <= rect.bottom) {
+          isOverDark = true;
+        }
+      });
+
+      if (isOverDark) {
+        header.classList.add("dark-bg-active");
+      } else {
+        header.classList.remove("dark-bg-active");
+      }
+    };
+
+    // Scroll Spy & Sliding Indicator logic
+    const navLinks = document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>;
+    const indicator = document.querySelector(".nav-indicator") as HTMLElement;
+    const headerNav = document.querySelector(".navbar-header") as HTMLElement;
+
+    const sections = Array.from(navLinks).map((link) => {
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        return document.querySelector(href);
+      }
+      return null;
+    }).filter(Boolean) as HTMLElement[];
+
+    // Updates the sliding indicator line's horizontal position, width, and color
+    const updateIndicatorPosition = (targetLink: HTMLElement | null) => {
+      if (!indicator) return;
+      if (!targetLink) {
+        indicator.style.opacity = "0";
+        return;
+      }
+
+      // Compute exact position aligning the center of the 24px indicator to the text center
+      const targetLeft = targetLink.offsetLeft + (targetLink.offsetWidth / 2) - 12;
+      
+      indicator.style.left = `${targetLeft}px`;
+      indicator.style.opacity = "1";
+
+      const isHovered = targetLink.classList.contains("is-hovered");
+      const isDarkBg = headerNav.classList.contains("dark-bg-active");
+
+      if (isHovered) {
+        indicator.style.backgroundColor = "var(--color-orange)";
+      } else {
+        indicator.style.backgroundColor = isDarkBg 
+          ? "var(--color-shade-blue)" 
+          : "var(--color-blue)";
+      }
+    };
+
+    // Update indicator dynamically when contrast state changes
+    const observerContrastChanges = new MutationObserver(() => {
+      const activeLink = document.querySelector(".nav-link.active") as HTMLElement;
+      updateIndicatorPosition(activeLink);
+    });
+    observerContrastChanges.observe(headerNav, { attributes: true, attributeFilter: ["class"] });
+
+    // Hover listeners for desktop nav links sliding
+    navLinks.forEach((link) => {
+      link.addEventListener("mouseenter", () => {
+        navLinks.forEach(l => l.classList.remove("is-hovered"));
+        link.classList.add("is-hovered");
+        updateIndicatorPosition(link);
+      });
+
+      link.addEventListener("mouseleave", () => {
+        link.classList.remove("is-hovered");
+        const activeLink = document.querySelector(".nav-link.active") as HTMLElement;
+        updateIndicatorPosition(activeLink);
+      });
+    });
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px",
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            if (link.getAttribute("href") === `#${id}`) {
+              link.classList.add("active");
+              updateIndicatorPosition(link);
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    // Fallback ScrollSpy for page top boundary
+    const handleTopSpyFallback = () => {
+      if (window.scrollY < 50) {
+        navLinks.forEach((link, idx) => {
+          if (idx === 0) {
+            link.classList.add("active");
+            updateIndicatorPosition(link);
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleContrast, { passive: true });
+    window.addEventListener("scroll", handleTopSpyFallback, { passive: true });
+    window.addEventListener("resize", handleContrast, { passive: true });
+
+    // Initial triggers
+    handleScroll();
+    handleContrast();
+    handleTopSpyFallback();
+    
+    // Position on mount
+    const activeLink = document.querySelector(".nav-link.active") as HTMLElement;
+    setTimeout(() => updateIndicatorPosition(activeLink), 100);
+  }
+
+  // Support standard navigation and view transitions
+  document.addEventListener("DOMContentLoaded", initNavbarScroll);
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    initNavbarScroll();
+  }
+</script>
+
+<style>
+  .navbar-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background-color: transparent;
+    transition: var(--transition-all);
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Glassmorphism style when scrolled - inherits global .liquid-glass properties */
+  .navbar-header.scrolled {
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* When scrolled over dark background, the glassmorphism adjusts border for contrast */
+  .navbar-header.scrolled.dark-bg-active {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .navbar-container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition-all);
+  }
+
+  .brand-logo-img {
+    height: 48px; /* 48px logo height */
+    width: auto;
+    display: block;
+    transition: var(--transition-all);
+  }
+
+  /* Logo high contrast over dark backgrounds */
+  .navbar-header.dark-bg-active .brand-logo-img {
+    filter: brightness(0) invert(1); /* Turns Navy Pendar logo text/emblem white */
+  }
+
+  /* Hamburger Menu Toggle */
+  .nav-toggle-input {
+    display: none;
+  }
+
+  .nav-toggle-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    z-index: var(--z-above);
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-blue);
+    transition: var(--transition-all);
+    border-radius: var(--radius-full);
+  }
+
+  .navbar-header.dark-bg-active .hamburger-line {
+    background-color: var(--color-shade-blue);
+  }
+
+  /* Mobile Navigation Menu Dropdown */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-shade-blue);
+    padding: var(--space-6) var(--space-4);
+    flex-direction: column;
+    gap: var(--space-6);
+    box-shadow: 0 10px 25px rgba(0, 17, 82, 0.05);
+  }
+
+  .navbar-header.dark-bg-active .nav-menu {
+    background-color: var(--color-blue);
+    border-color: rgba(231, 236, 253, 0.1);
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: relative;
+  }
+
+  .nav-link {
+    font-size: var(--text-sm); /* text-sm size */
+    font-weight: var(--font-weight-semibold); /* semibold */
+    color: var(--color-blue); /* color-blue */
+    display: inline-block;
+    padding: var(--space-2) 0;
+    position: relative;
+    transition: var(--transition-all);
+  }
+
+  .nav-link:hover {
+    color: var(--color-orange);
+  }
+
+  /* Single floating indicator line */
+  .nav-indicator {
+    position: absolute;
+    bottom: -16px; /* spacing 16px below the active text */
+    left: 0;
+    width: 24px; /* 24px width */
+    height: 2px; /* 2px stroke width */
+    background-color: var(--color-blue);
+    border-radius: var(--radius-full); /* rounded point */
+    transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease, opacity 0.2s ease;
+    pointer-events: none;
+    opacity: 0;
+    display: none; /* Hidden on mobile */
+  }
+
+  .navbar-header.dark-bg-active .nav-link {
+    color: var(--color-shade-blue);
+  }
+
+  .navbar-header.dark-bg-active .nav-link:hover {
+    color: var(--color-orange);
+  }
+
+  /* Mobile CTA actions drawer */
+  .nav-actions-mobile {
+    display: flex;
+    border-top: 1px solid var(--color-shade-blue);
+    padding-top: var(--space-4);
+  }
+
+  .navbar-header.dark-bg-active .nav-actions-mobile {
+    border-color: rgba(231, 236, 253, 0.1);
+  }
+
+  .nav-cta-btn {
+    width: 100%;
+  }
+
+  /* Desktop actions wrapper (hidden on mobile) */
+  .nav-actions-desktop {
+    display: none;
+  }
+
+  /* Hamburger checked logic */
+  .nav-toggle-input:checked ~ .nav-menu {
+    display: flex;
+  }
+
+  .nav-toggle-input:checked ~ .nav-toggle-button .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .nav-toggle-input:checked ~ .nav-toggle-button .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle-input:checked ~ .nav-toggle-button .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Desktop layout overrides: 3 distinct columns */
+  @media (min-width: 1024px) {
+    .nav-toggle-button {
+      display: none;
+    }
+
+    /* Column 2 styling */
+    .nav-menu,
+    .navbar-header.dark-bg-active .nav-menu {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      width: auto;
+    }
+
+    .nav-links {
+      flex-direction: row;
+      gap: 32px; /* 32px gap between center menu items as requested */
+    }
+
+    .nav-link {
+      padding: 0;
+    }
+
+    .nav-indicator {
+      display: block; /* Visible on desktop */
+    }
+
+    .nav-actions-mobile {
+      display: none;
+    }
+
+    /* Column 3 styling */
+    .nav-actions-desktop {
+      display: flex;
+      align-items: center;
+    }
+  }
+</style>
