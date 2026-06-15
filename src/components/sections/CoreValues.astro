@@ -1,5 +1,10 @@
 ---
 import valueImg from "../../images/value-image.png";
+import imageRocket from "../../images/image-rocket.png";
+import imageBook from "../../images/image-book.png";
+import imageCube from "../../images/image-cube.png";
+import imageShield from "../../images/image-shield.png";
+import imageTransparent from "../../images/image-transparent.png";
 ---
 
 <section class="core-values" id="values">
@@ -60,7 +65,15 @@ import valueImg from "../../images/value-image.png";
       <!-- Center Logo & Glow Graphic -->
       <div class="orbit-center">
         <div class="orbit-center-glow"></div>
-        <img src={valueImg.src} alt="Pendar Core Logo" class="orbit-image" width={valueImg.width} height={valueImg.height} loading="lazy" decoding="async" />
+        <img
+          src={valueImg.src}
+          alt="Pendar Core Logo"
+          class="orbit-image"
+          width={valueImg.width}
+          height={valueImg.height}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <!-- Ring 1 Dots (Clockwise) -->
@@ -92,7 +105,15 @@ import valueImg from "../../images/value-image.png";
               workflows, operational requirements, and business objectives.
             </p>
           </div>
-          <div class="value-orbit-card__placeholder"></div>
+          <img
+            src={imageRocket.src}
+            alt="Tailored Enterprise Solutions"
+            class="value-orbit-card__image"
+            width={imageRocket.width}
+            height={imageRocket.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -107,7 +128,15 @@ import valueImg from "../../images/value-image.png";
               defining technology solutions.
             </p>
           </div>
-          <div class="value-orbit-card__placeholder"></div>
+          <img
+            src={imageBook.src}
+            alt="Business-Driven Development"
+            class="value-orbit-card__image"
+            width={imageBook.width}
+            height={imageBook.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -122,7 +151,15 @@ import valueImg from "../../images/value-image.png";
               scalability, and long-term business growth.
             </p>
           </div>
-          <div class="value-orbit-card__placeholder"></div>
+          <img
+            src={imageCube.src}
+            alt="Long-Term Scalability"
+            class="value-orbit-card__image"
+            width={imageCube.width}
+            height={imageCube.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -137,7 +174,15 @@ import valueImg from "../../images/value-image.png";
               protect operational data and system reliability.
             </p>
           </div>
-          <div class="value-orbit-card__placeholder"></div>
+          <img
+            src={imageShield.src}
+            alt="Security by Design"
+            class="value-orbit-card__image"
+            width={imageShield.width}
+            height={imageShield.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
@@ -152,7 +197,15 @@ import valueImg from "../../images/value-image.png";
               governance throughout development.
             </p>
           </div>
-          <div class="value-orbit-card__placeholder"></div>
+          <img
+            src={imageTransparent.src}
+            alt="Transparent Collaboration"
+            class="value-orbit-card__image"
+            width={imageTransparent.width}
+            height={imageTransparent.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
@@ -225,12 +278,13 @@ import valueImg from "../../images/value-image.png";
   }
 
   .value-orbit-card {
+    position: relative;
+    overflow: hidden;
     border-radius: 24px; /* Card corner rounded by 24px */
     padding: 24px; /* Whole padding 24px too */
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    gap: var(--space-6); /* Space-6 gap between text column and placeholder */
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
@@ -244,16 +298,15 @@ import valueImg from "../../images/value-image.png";
     transform: translateY(-4px);
   }
 
-  .value-orbit-card__placeholder {
-    width: 64px; /* Increased placeholder width to 64px */
-    flex-shrink: 0;
-    border-radius: 16px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .value-orbit-card__image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 112px;
+    width: auto;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .value-orbit-card__body {
@@ -261,6 +314,9 @@ import valueImg from "../../images/value-image.png";
     flex-direction: column;
     gap: var(--space-4); /* Spacing of space-4 between title and description */
     flex: 1;
+    padding-right: 96px; /* Make room for the absolute image on the right */
+    position: relative;
+    z-index: 2;
   }
 
   .value-orbit-card__title {
@@ -277,6 +333,39 @@ import valueImg from "../../images/value-image.png";
     color: var(--color-light-blue) !important; /* White */
     margin: 0;
     line-height: 1.6;
+  }
+
+  /* Very small mobile screens */
+  @media (max-width: 400px) {
+    .core-values {
+      margin-top: var(--space-24);
+    }
+
+    .orbit-bg-word {
+      font-size: clamp(2.5rem, 14vw, 3.5rem);
+    }
+
+    .value-orbit-card {
+      padding: 16px;
+      border-radius: 16px;
+    }
+
+    .value-orbit-card__body {
+      padding-right: 72px;
+      gap: var(--space-2);
+    }
+
+    .value-orbit-card__image {
+      height: 80px;
+    }
+
+    .value-orbit-card__title {
+      font-size: var(--text-xs);
+    }
+
+    .value-orbit-card__desc {
+      font-size: 0.75rem;
+    }
   }
 
   @media (min-width: 1100px) {
@@ -495,9 +584,6 @@ import valueImg from "../../images/value-image.png";
   }
 
   @media (min-width: 1440px) {
-    .value-orbit-card__body {
-      width: 280px;
-    }
     .value-orbit-card-wrapper {
       width: 416px;
     }

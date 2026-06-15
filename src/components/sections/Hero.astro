@@ -405,6 +405,45 @@ import ring1 from "../../images/Ring1.png";
       display: none;
     }
   }
+
+  /* Very small mobile screens */
+  @media (max-width: 400px) {
+    .hero-container {
+      padding-top: 80px;
+    }
+
+    .hero-expertise {
+      font-size: var(--text-xs);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-points {
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .point-item {
+      font-size: var(--text-xs);
+      gap: 10px;
+    }
+
+    .point-icon {
+      height: 18px;
+    }
+
+    .hero-actions {
+      gap: 16px;
+    }
+
+    .scroll-text {
+      font-size: var(--text-xs);
+    }
+  }
 </style>
 
 <script is:inline>

@@ -437,6 +437,29 @@ button {
   }
 }
 
+/* Very small mobile screens (≤400px) – scale everything down proportionally */
+@media (max-width: 400px) {
+  .dark-sections-wrapper {
+    border-radius: 24px;
+  }
+
+  .btn-primary-custom {
+    height: 48px;
+    padding: 0 24px;
+    font-size: var(--text-xs);
+  }
+
+  .btn-circle-outline {
+    width: 48px;
+    height: 48px;
+  }
+
+  .label-pill {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+  }
+}
+
 /* Typography and text colors inside wrapper */
 .dark-sections-wrapper h1,
 .dark-sections-wrapper h2,
@@ -447,7 +470,7 @@ button {
   color: var(--color-white) !important;
 }
 
-.dark-sections-wrapper p:not(.process-card__desc),
+.dark-sections-wrapper p:not(.process-card__desc):not(.about-industries__category-desc):not(.value-orbit-card__desc),
 .dark-sections-wrapper span:not(.label-pill):not(.expertise-badge):not(.stat-value):not(.word):not(.how-we-work__timeline-number):not(.process-card__tag):not(.product-card__mod-pill):not(.product-card__device-pill):not(.headline-mask):not(.headline-line),
 .dark-sections-wrapper li {
   color: var(--color-shade-blue) !important;
@@ -532,5 +555,14 @@ button {
 @media (max-width: 1024px) {
   .whatsapp-fab {
     display: flex;
+  }
+}
+
+@media (max-width: 400px) {
+  .whatsapp-fab {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
   }
 }

@@ -245,8 +245,10 @@ const slides = [
 
   .products__list-viewport {
     position: relative;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     margin-top: 198.4px; /* Push list down to prevent margin collapse with header & spacing */
+    overflow-x: clip;
   }
 
   .products__track {
@@ -254,6 +256,8 @@ const slides = [
     flex-wrap: nowrap;
     gap: var(--space-6);
     width: max-content;
+    padding-left: var(--page-margin);
+    padding-right: 0;
   }
 
   .product-card-wrapper {
@@ -527,6 +531,60 @@ const slides = [
   @media (max-width: 768px) {
     .product-card {
       border-radius: 32px;
+    }
+  }
+
+  /* Very small mobile screens */
+  @media (max-width: 400px) {
+    .products__pin-wrapper {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .products__headline {
+      font-size: 1.5rem;
+    }
+
+    .products__list-viewport {
+      margin-top: 140px;
+    }
+
+    .product-card {
+      border-radius: 24px;
+      padding: 80px 20px 20px 20px;
+    }
+
+    .product-card__image {
+      height: 160px;
+      top: -96px;
+    }
+
+    section.products div.product-card h3.product-card__title {
+      font-size: var(--text-base);
+    }
+
+    section.products div.product-card p.product-card__desc {
+      font-size: var(--text-xs);
+      margin-top: var(--space-4);
+    }
+
+    .product-card__modules {
+      margin-top: var(--space-4);
+    }
+
+    section.products div.product-card span.product-card__mod-pill {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+    }
+
+    section.products div.product-card span.product-card__device-pill {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+    }
+
+    section.products div.product-card a.product-card__link {
+      font-size: 0.75rem;
+      padding: 4px 10px;
     }
   }
 </style>

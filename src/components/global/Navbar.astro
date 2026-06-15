@@ -267,6 +267,18 @@ import pendarLogo from "../../images/Pendar-short.svg";
     transition: var(--transition-all);
   }
 
+  /* Very small mobile screens */
+  @media (max-width: 400px) {
+    .brand-logo-img {
+      height: 36px;
+    }
+
+    .navbar-container {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+  }
+
   /* Logo high contrast over dark backgrounds */
   .navbar-header.dark-bg-active .brand-logo-img {
     filter: brightness(0) invert(1); /* Turns Navy Pendar logo text/emblem white */

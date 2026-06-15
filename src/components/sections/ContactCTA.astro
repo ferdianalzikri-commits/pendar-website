@@ -5,16 +5,32 @@ import pendarBlur from "../../images/pendar-blur.png";
 <section class="contact-cta" id="contact">
   <div class="container contact-cta__container">
     <!-- Background Blur Image -->
-    <img src={pendarBlur.src} alt="" class="contact-cta__blur-img" width={pendarBlur.width} height={pendarBlur.height} loading="lazy" decoding="async" />
+    <img
+      src={pendarBlur.src}
+      alt=""
+      class="contact-cta__blur-img"
+      width={pendarBlur.width}
+      height={pendarBlur.height}
+      loading="lazy"
+      decoding="async"
+    />
 
     <div class="contact-cta__inner">
       <!-- Column A -->
       <div class="contact-cta__col-a">
         <h2 class="contact-cta__headline">
-          <span class="headline-mask"><span class="headline-line">Every Operation</span></span>
-          <span class="headline-mask"><span class="headline-line">Has Its Challenges.</span></span>
-          <span class="headline-mask"><span class="headline-line">Let's Solve Them</span></span>
-          <span class="headline-mask"><span class="headline-line">Together.</span></span>
+          <span class="headline-mask"
+            ><span class="headline-line">Every Operation</span></span
+          >
+          <span class="headline-mask"
+            ><span class="headline-line">Has Its Challenges.</span></span
+          >
+          <span class="headline-mask"
+            ><span class="headline-line">Let's Solve Them</span></span
+          >
+          <span class="headline-mask"
+            ><span class="headline-line">Together.</span></span
+          >
         </h2>
         <p class="contact-cta__description">
           Our team is ready to understand your workflows, identify operational
@@ -27,7 +43,10 @@ import pendarBlur from "../../images/pendar-blur.png";
         <span class="contact-cta__sub-title">Let's Start the Conversation</span>
 
         <div class="contact-cta__actions">
-          <a href="mailto:info@procura.id" class="btn-primary-custom contact-cta__btn-orange">
+          <a
+            href="mailto:info@procura.id"
+            class="btn-primary-custom contact-cta__btn-orange"
+          >
             <svg
               class="contact-cta__btn-icon"
               width="20"
@@ -39,15 +58,22 @@ import pendarBlur from "../../images/pendar-blur.png";
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="12" y1="19" x2="12" y2="5"></line>
-              <polyline points="5 12 12 5 19 12"></polyline>
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
             Discuss Your Requirements
           </a>
 
           <span class="contact-cta__or">Or</span>
 
-          <a href="https://wa.me/6282110962949?text=Hello%20Pendar%20Team%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20solutions%20and%20discussing%20our%20organization%27s%20requirements.%20Could%20we%20schedule%20a%20brief%20discussion%3F" class="contact-cta__btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://wa.me/6282110962949?text=Hello%20Pendar%20Team%2C%20I%27m%20interested%20in%20learning%20more%20about%20your%20solutions%20and%20discussing%20our%20organization%27s%20requirements.%20Could%20we%20schedule%20a%20brief%20discussion%3F"
+            class="contact-cta__btn-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <svg
               class="contact-cta__btn-icon"
               width="20"
@@ -59,8 +85,9 @@ import pendarBlur from "../../images/pendar-blur.png";
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="12" y1="19" x2="12" y2="5"></line>
-              <polyline points="5 12 12 5 19 12"></polyline>
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              ></path>
             </svg>
             Get a Quick Response
           </a>
@@ -168,7 +195,7 @@ import pendarBlur from "../../images/pendar-blur.png";
   }
 
   .contact-cta__btn-icon {
-    margin-right: var(--space-1) !important; /* gap space-4 */
+    margin-right: var(--space-4) !important; /* gap space-4 */
     flex-shrink: 0 !important;
     display: inline-block !important;
   }
@@ -253,6 +280,43 @@ import pendarBlur from "../../images/pendar-blur.png";
       height: 250px !important;
     }
   }
+
+  /* Very small mobile screens */
+  @media (max-width: 400px) {
+    .contact-cta {
+      margin-top: var(--space-16);
+    }
+
+    .contact-cta__container {
+      padding-block: 40px !important;
+      padding-inline: 16px !important;
+      border-radius: 20px !important;
+      max-width: calc(100% - 32px) !important;
+    }
+
+    .contact-cta__headline {
+      font-size: 1.5rem !important;
+    }
+
+    .contact-cta__description {
+      font-size: var(--text-base) !important;
+    }
+
+    .contact-cta__sub-title {
+      font-size: var(--text-base) !important;
+    }
+
+    .contact-cta__btn-orange,
+    .contact-cta__btn-whatsapp {
+      height: 48px !important;
+      padding: 0 20px !important;
+      font-size: var(--text-xs) !important;
+    }
+
+    .contact-cta__blur-img {
+      height: 160px !important;
+    }
+  }
 </style>
 
 <script>
@@ -265,7 +329,9 @@ import pendarBlur from "../../images/pendar-blur.png";
     const section = document.querySelector(".contact-cta");
     if (!section) return;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (prefersReducedMotion) return;
 
     gsap.set(".contact-cta__headline .headline-line", { clearProps: "all" });
@@ -274,7 +340,7 @@ import pendarBlur from "../../images/pendar-blur.png";
       ".contact-cta__sub-title",
       ".contact-cta__btn-orange",
       ".contact-cta__or",
-      ".contact-cta__btn-whatsapp"
+      ".contact-cta__btn-whatsapp",
     ];
     gsap.set(otherElements, { clearProps: "all" });
 
@@ -288,7 +354,7 @@ import pendarBlur from "../../images/pendar-blur.png";
       duration: 1.0,
       stagger: 0.15,
       ease: "power3.out",
-      clearProps: "all"
+      clearProps: "all",
     });
 
     gsap.from(otherElements, {
@@ -302,7 +368,7 @@ import pendarBlur from "../../images/pendar-blur.png";
       stagger: 0.1,
       ease: "power3.out",
       delay: 0.3,
-      clearProps: "all"
+      clearProps: "all",
     });
   }
 
