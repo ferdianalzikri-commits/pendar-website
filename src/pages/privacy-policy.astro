@@ -1,0 +1,199 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout 
+  title="Privacy Policy | PT Pendar Sinergi Utama" 
+  description="Learn how PT Pendar Sinergi Utama collects, uses, and protects information shared through this website."
+>
+  <div class="legal-page section-padding">
+    <div class="legal-container">
+
+      
+      <header class="legal-header">
+        <span class="label-pill">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">
+          Learn how <strong class="company-name">PT Pendar Sinergi Utama</strong> collects, uses, and protects information shared through this website.
+        </p>
+      </header>
+
+      <div class="legal-content">
+        <article>
+          <section>
+            <h2>Information We Collect</h2>
+            <p>We may collect information voluntarily submitted by visitors, including:</p>
+            <ul>
+              <li>Name</li>
+              <li>Company name</li>
+              <li>Email address</li>
+              <li>Phone number</li>
+              <li>Project requirements or inquiries</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>How We Use Information</h2>
+            <p>Information is used to:</p>
+            <ul>
+              <li>Respond to inquiries and requests.</li>
+              <li>Provide products and services.</li>
+              <li>Improve website experience.</li>
+              <li>Communicate regarding projects and collaborations.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Data Protection</h2>
+            <p>Reasonable security measures are implemented to protect information from unauthorized access or disclosure.</p>
+          </section>
+
+          <section>
+            <h2>Cookies</h2>
+            <p>This website may use cookies to improve user experience and website performance. Users may disable cookies through browser settings.</p>
+          </section>
+
+          <section>
+            <h2>Third-Party Services</h2>
+            <p>We may use trusted third-party services such as analytics, hosting, and communication tools that process information according to their own privacy policies.</p>
+          </section>
+
+          <section>
+            <h2>Your Rights</h2>
+            <p>Users may request access, correction, or deletion of personal information by contacting us.</p>
+          </section>
+
+          <section>
+            <h2>Contact Information</h2>
+            <p>
+              <strong class="company-name">PT Pendar Sinergi Utama</strong><br />
+              Email: <a href="mailto:info@procura.id">info@procura.id</a>
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <div class="back-nav">
+        <a href="/" class="btn-back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .legal-page {
+    background-color: var(--color-bg);
+    min-height: 100vh;
+  }
+
+  .legal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    position: relative;
+  }
+
+  .back-nav {
+    margin-top: var(--space-24);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 500;
+    color: var(--color-blue);
+    text-decoration: none;
+    background: var(--color-shade-blue);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    transition: var(--transition-all);
+  }
+
+  .btn-back:hover {
+    background: var(--color-blue);
+    color: var(--color-white);
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-16);
+  }
+
+  .legal-header h1 {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
+    letter-spacing: -0.02em;
+  }
+
+  .legal-header .subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+  }
+
+  .legal-content article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .legal-content section {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-12);
+  }
+
+  .legal-content section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .legal-content h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-4);
+    color: var(--color-navy);
+  }
+
+  .legal-content p, 
+  .legal-content ul {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .legal-content ul {
+    list-style-type: disc;
+    margin-top: var(--space-4);
+    padding-left: var(--space-6);
+  }
+
+  .legal-content li {
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-content a {
+    color: var(--color-orange);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .legal-content a:hover {
+    text-decoration: none;
+  }
+
+  .company-name {
+    font-weight: 700;
+    white-space: nowrap !important;
+    display: inline-block;
+  }
+</style>

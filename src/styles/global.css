@@ -431,6 +431,12 @@ button {
   --color-accent: var(--color-green);
 }
 
+@media (max-width: 768px) {
+  .dark-sections-wrapper {
+    border-radius: 32px;
+  }
+}
+
 /* Typography and text colors inside wrapper */
 .dark-sections-wrapper h1,
 .dark-sections-wrapper h2,

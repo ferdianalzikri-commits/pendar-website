@@ -19,22 +19,44 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <!-- Primary SEO Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="PT Pendar Sinergi Utama" />
+    <meta name="theme-color" content="#001152" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="canonical" href={Astro.url.href} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://pendar.id/og-image.jpg" />
+    <meta property="og:site_name" content="PT Pendar Sinergi Utama" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://pendar.id/og-image.jpg" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "PT Pendar Sinergi Utama",
+      "url": "https://pendar.id",
+      "logo": "https://pendar.id/logo.png",
+      "description": "Enterprise technology partner delivering digital solutions for procurement, workforce, logistics, aviation, and infrastructure operations.",
+      "sameAs": [],
+      "foundingDate": "2021"
+    })} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import gradientBg from "../../images/gradient.png";
+
 // Process steps dataset based on approved 6-step work cycle (rebuild trigger)
 const processSteps = [
   {
@@ -49,6 +52,12 @@ const processSteps = [
 <section class="how-we-work section-padding" id="process">
   <!-- Decorative Background Oval Shape -->
   <div class="how-we-work__bg-shape"></div>
+  <Image 
+    src={gradientBg} 
+    alt="" 
+    class="how-we-work__gradient-bg" 
+    aria-hidden="true" 
+  />
 
   <div class="container how-we-work__container">
     <div class="how-we-work__inner">
@@ -57,17 +66,17 @@ const processSteps = [
         <span class="label-pill">How We Work</span>
         <h2 class="how-we-work__headline">
           <span class="headline-mask"
-            ><span class="headline-line">From Discovery to</span></span
+            ><span class="headline-line">From Discovery</span></span
           >
           <span class="headline-mask"
-            ><span class="headline-line">Long-Term Support</span></span
+            ><span class="headline-line">to Long-Term Support</span></span
           >
         </h2>
         <p class="how-we-work__description">
-          Pendar operates with an integrated technology ecosystem that enables
-          us to build innovative solutions, streamline collaboration, and
-          deliver exceptional results across all project phases from first
-          analysis to long-term maintenance.
+          We support enterprise projects through every stage—from understanding
+          business workflows and designing solutions to development, deployment,
+          and long-term support. Ensuring each system delivers lasting
+          operational value.
         </p>
       </div>
 
@@ -162,6 +171,17 @@ const processSteps = [
     padding-bottom: var(--space-48) !important;
     position: relative;
     overflow: visible; /* But parent wrapper clips it */
+  }
+
+  .how-we-work__gradient-bg {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .how-we-work__container {

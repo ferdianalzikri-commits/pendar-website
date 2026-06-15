@@ -17,7 +17,7 @@ const products = [
     modules: ["Vendor Management", "e-Auction", "Tender Management", "Purchase Orders", "Contract Monitoring", "Supply Chain"],
     devices: ["Mobile", "Web"],
     linkText: "Visit Procura",
-    linkHref: "#contact"
+    linkHref: "https://www.procura.id"
   },
   {
     id: "catalogue",
@@ -27,7 +27,7 @@ const products = [
     modules: ["Vendor Catalogue", "Purchase Order", "Negotiation", "Direct Messaging"],
     devices: ["Mobile", "Web"],
     linkText: "Visit Procura",
-    linkHref: "#contact"
+    linkHref: "https://www.procura.id"
   },
   {
     id: "marketplace",
@@ -159,7 +159,12 @@ const slides = [
                     </div>
                     
                     {product.linkText && (
-                      <a href={product.linkHref} class="product-card__link">
+                      <a 
+                        href={product.linkHref} 
+                        class="product-card__link"
+                        target={product.linkHref.startsWith('http') ? '_blank' : undefined}
+                        rel={product.linkHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      >
                         {product.linkText}
                         <svg class="product-card__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                           <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -347,7 +352,8 @@ const slides = [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--space-6); /* space-6 (24px) */
+    margin-top: auto;
+    padding-top: var(--space-6); /* space-6 (24px) */
     width: 100%;
   }
 
@@ -515,6 +521,12 @@ const slides = [
   @media (max-width: 1023px) {
     .desktop-only {
       display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .product-card {
+      border-radius: 32px;
     }
   }
 </style>
