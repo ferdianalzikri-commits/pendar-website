@@ -113,14 +113,23 @@ import ring1 from "../../images/Ring1.png";
     }
   }
 
-  @keyframes zoom-in-fade {
-    from {
+  @keyframes blow-balloon-enter {
+    0% {
       opacity: 0;
-      transform: scale(0.85);
+      scale: 0;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes rotate-endless {
+    from {
+      rotate: 0deg;
     }
     to {
-      opacity: 1;
-      transform: scale(1);
+      rotate: 360deg;
     }
   }
 
@@ -333,7 +342,8 @@ import ring1 from "../../images/Ring1.png";
 
   .hero-ring-image {
     position: absolute;
-    left: 0;
+    right: 0;
+    translate: 50% 0;
     width: 50vw;
     max-width: 700px;
     min-width: 450px;
@@ -341,7 +351,10 @@ import ring1 from "../../images/Ring1.png";
     pointer-events: none;
     z-index: var(--z-base);
     opacity: 0;
-    animation: zoom-in-fade 1.8s cubic-bezier(0.05, 1, 0.1, 1) 0.45s forwards;
+    transform-origin: center center;
+    animation: 
+      blow-balloon-enter 1.2s cubic-bezier(0.05, 1, 0.1, 1) 0.45s forwards,
+      rotate-endless 45s linear 0.45s infinite;
   }
 
   /* Responsive styling */
@@ -442,6 +455,14 @@ import ring1 from "../../images/Ring1.png";
 
     .scroll-text {
       font-size: var(--text-xs);
+    }
+  }
+
+  /* Extra large screens */
+  @media (min-width: 1600px) {
+    .hero-ring-image {
+      width: 57.5vw;
+      max-width: 805px;
     }
   }
 </style>
