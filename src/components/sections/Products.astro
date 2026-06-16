@@ -245,8 +245,7 @@ const slides = [
 
   .products__list-viewport {
     position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
     margin-top: 198.4px; /* Push list down to prevent margin collapse with header & spacing */
     overflow-x: clip;
   }
@@ -256,19 +255,19 @@ const slides = [
     flex-wrap: nowrap;
     gap: var(--space-6);
     width: max-content;
-    padding-left: var(--page-margin);
+    padding-left: 0;
     padding-right: 0;
   }
 
   .product-card-wrapper {
     position: relative;
     display: grid;
-    width: calc(100vw - 40px); /* Mobile: 1 card takes full width minus page margin */
+    width: var(--container-width, 100%); /* Mobile: 1 card takes full width */
   }
 
   @media (min-width: 768px) {
     .product-card-wrapper {
-      width: calc((100vw - (var(--page-margin) * 2) - var(--space-6)) / 2); /* Tablet: 2 cards */
+      width: calc((var(--container-width, 100%) - var(--space-6)) / 2); /* Tablet: 2 cards */
     }
   }
 
@@ -485,12 +484,12 @@ const slides = [
     }
 
     .product-card-wrapper {
-      width: calc((100vw - (var(--page-margin) * 2) - (var(--space-8) * 2)) / 3); /* Desktop: 3 cards */
+      width: calc((var(--container-width, 100%) - (var(--space-8) * 2)) / 3); /* Desktop: 3 cards */
     }
 
     #custom-systems-wrapper {
       /* Custom System card spans 2 columns width */
-      width: calc((((100vw - (var(--page-margin) * 2) - (var(--space-8) * 2)) / 3) * 2) + var(--space-8));
+      width: calc((((var(--container-width, 100%) - (var(--space-8) * 2)) / 3) * 2) + var(--space-8));
     }
   }
 
@@ -602,7 +601,7 @@ const slides = [
       mm.revert();
     }
 
-    const section = document.querySelector(".products");
+    const section = document.querySelector(".products") as HTMLElement;
     if (!section) return;
 
     // Check prefers-reduced-motion
@@ -618,6 +617,34 @@ const slides = [
       const dots = section.querySelectorAll(".products__scroll-indicator .scroll-dot");
 
       if (!track || cards.length === 0) return;
+      
+      const wrapper = section.querySelector(".products__list-viewport") as HTMLElement;
+      const containerWrapper = section.querySelector(".products__container-wrapper") as HTMLElement;
+      
+      // Calculate dynamic container measurements
+      const calculateBounds = () => {
+        // Reset styles to measure original DOM state accurately on resize
+        wrapper.style.width = "";
+        wrapper.style.marginLeft = "";
+        track.style.paddingLeft = "";
+        track.style.paddingRight = "";
+
+        const layoutMargin = containerWrapper.getBoundingClientRect().left;
+        const containerWidth = containerWrapper.clientWidth;
+
+        section.style.setProperty("--layout-margin", `${layoutMargin}px`);
+        section.style.setProperty("--container-width", `${containerWidth}px`);
+
+        // Dynamically create full-bleed effect without 100vw CSS bugs
+        wrapper.style.width = `${window.innerWidth}px`;
+        wrapper.style.marginLeft = `-${layoutMargin}px`;
+        
+        // Pad the track so cards start and stop perfectly within layout margins
+        track.style.paddingLeft = `${layoutMargin}px`;
+        track.style.paddingRight = `${layoutMargin}px`;
+      };
+      
+      calculateBounds();
       
       // Absolute Robust Height Matching
       const matchHeights = () => {
@@ -647,9 +674,12 @@ const slides = [
       };
       
       const resizeObserver = new ResizeObserver(() => {
+        calculateBounds();
         matchHeights();
       });
       resizeObserver.observe(track);
+      // Observe the viewport to detect layout changes
+      resizeObserver.observe(wrapper);
       
       // Entrance animation
       const tlEntrance = gsap.timeline({
@@ -671,9 +701,12 @@ const slides = [
 
       // Calculate horizontal scroll distance
       const scrollDistance = () => {
-        // Track width minus the viewport's container width.
-        // This ensures the right side of the last card stops perfectly at the layout container's right padding.
-        return -(track.scrollWidth - track.parentElement!.clientWidth); 
+        // With the full-bleed wrapper, wrapper.clientWidth is window.innerWidth.
+        // The track has padding-right equal to the layoutMargin.
+        // Translating exactly -(track.scrollWidth - wrapper.clientWidth) makes the track's right edge touch the screen edge.
+        // Because of the padding-right, the last card is pushed back by exactly the layoutMargin,
+        // making it stop precisely at the container right edge (matching the Navbar Contact button).
+        return -(track.scrollWidth - wrapper.clientWidth); 
       };
 
       // Pinning Scroll Slider (Dynamic Horizontal Scrub)

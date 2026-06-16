@@ -130,10 +130,20 @@ html {
   -moz-tab-size: 4;
   tab-size: 4;
   overflow-x: clip;
-  overflow-y: overlay;
-  /* Legacy overlay scrollbar support */
-  scrollbar-gutter: auto;
+  background-color: var(--color-bg);
   font-size: 16px;
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  background: transparent;
 }
 
 /* Fluid scale for smaller desktop screens to preserve layout ratio */
@@ -145,6 +155,10 @@ html {
 
 body {
   background-color: var(--color-bg);
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
   color: var(--color-text);
   font-family: var(--font-family);
   font-size: var(--text-base);
@@ -527,7 +541,8 @@ button {
  * ==========================================================================
  */
 .whatsapp-fab {
-  display: none; /* Hidden on desktop */
+  display: none;
+  /* Hidden on desktop */
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -544,7 +559,8 @@ button {
 }
 
 .whatsapp-fab:hover {
-  background-color: #4da657; /* slightly darker green */
+  background-color: #4da657;
+  /* slightly darker green */
   transform: scale(1.05);
 }
 
